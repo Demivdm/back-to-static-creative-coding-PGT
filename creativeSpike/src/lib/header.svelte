@@ -37,6 +37,7 @@
 
 <header>
   <img src="/hva-triangle.svg" alt="" class="graphic" />
+  <img src="/logo.svg" class="graphic" alt="" />
   <div bind:this={scrollArea} class="scroll-area">
     <h1 style={textStyle} class:ridiculous={isRidiculous}>
       Platform grote thema's
@@ -54,15 +55,22 @@
 
 <style>
   @import url("https://fonts.googleapis.com/css2?family=Rubik+Bubbles&display=swap");
-
+  :root {
+    --main-dark: #1e1649;
+    --secondary-pink: #f25379;
+  }
   header {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(3, 1fr);
     grid-row-gap: 50px;
     font-family: sans-serif;
-    background-color: #351eb6;
-    height: 40vh;
+
+    height: 45vh;
+  }
+  img:nth-of-type(2) {
+    height: 1.5rem;
+    padding: 0.5rem;
   }
 
   .scroll-area {
@@ -88,6 +96,8 @@
     color: red;
     position: absolute;
     right: 0;
+    font-weight: 900;
+    width: 6rem;
   }
   h1,
   a,
@@ -103,9 +113,39 @@
 
   ul li {
     list-style-type: none;
-  }
-  ul button {
+    padding: 1rem 1.5rem 1rem 1.5rem;
+    background-color: var(--main-dark);
+    display: flex;
+    align-items: center;
     height: max-content;
+  }
+  ul li:hover {
+    background-color: var(--secondary-pink);
+  }
+  button {
+    height: max-content;
+    padding: 1rem 1.5rem 1rem 1.5rem;
+    background-color: var(--main-dark);
+    box-shadow: 0;
+    margin: 0;
+    border: 0;
+    color: white;
+    font-weight: 900;
+    font-size: 1rem;
+    animation: shakeButton 0.5s ease-in-out infinite;
+    font-family: sans-serif;
+  }
+  button:hover {
+    background: linear-gradient(
+      to right,
+      violet 0%,
+      indigo 16.666%,
+      blue 33.333%,
+      green 50%,
+      yellow 66.666%,
+      orange 83.333%,
+      red 100%
+    );
   }
 
   a {
@@ -124,13 +164,8 @@
 
   .graphic {
     position: absolute;
-    top: 0;
-    max-width: 70%;
   }
 
-  button {
-    animation: shakeButton 0.5s ease-in-out infinite;
-  }
   @keyframes shakeButton {
     0%,
     100% {
@@ -175,6 +210,18 @@
     }
   }
 
+  @keyframes smallHeader {
+    20% {
+      scale: 0.9;
+    }
+    50% {
+      scale: 0.8;
+    }
+    100% {
+      position: sticky;
+    }
+  }
+
   /* scroll bar */
   .scroll-area::-webkit-scrollbar {
     width: 20px;
@@ -185,7 +232,7 @@
   }
 
   .scroll-area::-webkit-scrollbar-thumb {
-    background-image: url("arrow.svg");
+    background-image: url("arrow v-2.png");
     background-position: center top;
     background-repeat: no-repeat, no-repeat;
     background-size: 50px;

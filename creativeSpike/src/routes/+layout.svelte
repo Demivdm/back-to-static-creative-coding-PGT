@@ -6,11 +6,12 @@
 
 <Header />
 <slot />
-<WerkvormCard />
-<h2>hier komt de rest van de website</h2>
 
 <style>
   :global(body) {
     height: 200vh;
+    margin: 0;
+    padding: 0;
+    background-color: #351eb6;
   }
 </style>
