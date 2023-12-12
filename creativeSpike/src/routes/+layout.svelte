@@ -8,3 +8,9 @@
 <slot />
 <WerkvormCard />
 <h2>hier komt de rest van de website</h2>
+
+<style>
+  :global(body) {
+    height: 200vh;
+  }
+</style>

@@ -13,6 +13,16 @@
       });
     }
   });
+  if (scrollArea) {
+    scrollArea.addEventListener("scroll", () => {
+      const maxScroll = scrollArea.scrollHeight - scrollArea.clientHeight;
+      const scrollPercentage = (scrollArea.scrollTop / maxScroll) * 100;
+
+      // Rotate the scrollbar thumb image based on scroll position
+      const rotationDegree = scrollPercentage >= 100 ? 180 : 0;
+      scrollArea.style.setProperty("--rotation-degree", `${rotationDegree}deg`);
+    });
+  }
 
   // Reactive block to dynamically update the style
   $: textStyle = `
@@ -31,7 +41,7 @@
     <h1 style={textStyle} class:ridiculous={isRidiculous}>
       Platform grote thema's
     </h1>
-    <p>scroll me</p>
+    <p>scroll me up and down</p>
   </div>
 
   <ul>
@@ -163,6 +173,23 @@
     100% {
       color: violet;
     }
+  }
+
+  /* scroll bar */
+  .scroll-area::-webkit-scrollbar {
+    width: 20px;
+  }
+
+  .scroll-area::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+
+  .scroll-area::-webkit-scrollbar-thumb {
+    background-image: url("arrow.svg");
+    background-position: center top;
+    background-repeat: no-repeat, no-repeat;
+    background-size: 50px;
+    transform: rotate(0);
   }
 
   @media (min-width: 30rem) {
