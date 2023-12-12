@@ -98,6 +98,16 @@
     right: 0;
     font-weight: 900;
     width: 6rem;
+    animation: noticeMe 0.5s ease-in-out infinite;
+  }
+  @keyframes noticeMe {
+    0%,
+    100% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(0.9);
+    }
   }
   h1,
   a,
