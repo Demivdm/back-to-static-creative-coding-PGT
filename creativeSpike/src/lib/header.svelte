@@ -1,36 +1,55 @@
 <script>
   import { onMount } from "svelte";
 
+  // scrollpositie staat standaard op 0
   let scrollPosition = 0;
+  // variabele aangemaakt voor scrollarea, de div is gebind waardoor ik er een variabele van kan maken
   let scrollArea;
+  // de functie voor het togglen van de knop staat standaard uit.
   let isRidiculous = false;
 
+  // onmount betekent dat de volgende functies pas gestart worden wanneer het component is ingeladen
   onMount(() => {
+    // als scrollArea bestaan voer dan de volgende functie uit
     if (scrollArea) {
+      // scroll is een standaard event listener
+      // () => is de arrow function syntax van javascript
+      // tussen de haakjes zou een parameter kunnen staan
+
+      // hieronder staat de lange manier om het uit te schrijven
+      //       scrollArea.addEventListener("scroll", function() {
+      //   scrollPosition = scrollArea.scrollTop;
+      // });
       scrollArea.addEventListener("scroll", () => {
-        // Update the scroll position when scrolling within the scroll area
+        // deze lijn code neemt de waarde van de variabele van scrollpostion aan (dat is in dit geval 0)
+        // daarna wordt de scrollpositie van scrollArea overgenomen en er word gekeken hoe ver er is gescrollt vanaf de bovenkant
+        // en nu wordt scrollposition geupdate tegelijkertijd met de huidige positie van de scrollbar
+        //  scrollTop is een property die kijkt hoeveel er verticaal is gescrollt
         scrollPosition = scrollArea.scrollTop;
       });
     }
   });
-  if (scrollArea) {
-    scrollArea.addEventListener("scroll", () => {
-      const maxScroll = scrollArea.scrollHeight - scrollArea.clientHeight;
-      const scrollPercentage = (scrollArea.scrollTop / maxScroll) * 100;
 
-      // Rotate the scrollbar thumb image based on scroll position
-      const rotationDegree = scrollPercentage >= 100 ? 180 : 0;
-      scrollArea.style.setProperty("--rotation-degree", `${rotationDegree}deg`);
-    });
-  }
-
-  // Reactive block to dynamically update the style
+  // $ declareert een reactief element
+  // een reacief element is een element dat automatisch update wanneer de variabele veranderen
+  // $: is een afkorting
+  // wanneer de scrollpositie veranderd worden de styles automatisch aangepast
+  // backticks om de style te defineeren
+  // de eerste scrollposition is voor een negatieve horizontale offset
+  // de tweede scrollposition bepaald de verticale offset
+  // de /2 staat erachter zodat de text shadow iets dichterbij de letters blijft
+  // wanneer je 2px veranderd in bijvoorbeeld 10px dan komt de textshadow dichter op de tekst te staan
+  // transform werkt op dezelfde manier
   $: textStyle = `
     text-shadow: -${scrollPosition / 2}px ${scrollPosition / 2}px 0 #000000;
     transform: perspective(500px) rotateX(${scrollPosition / 5}deg);
   `;
 
+  // variable om te toggelen wordt aangemaakt
   const toggleRidiculous = () => {
+    // ! betekent niet
+    // dit statement veranderd de staat van de variabele isRidiculious
+    // wanneer deze op true staat wordt ie naar false getoggelt en visa versa
     isRidiculous = !isRidiculous;
   };
 </script>
@@ -38,7 +57,10 @@
 <header>
   <img src="/hva-triangle.svg" alt="" class="graphic" />
   <img src="/logo.svg" class="graphic" alt="" />
+  <!-- bind gebruikt om de div met een variabele op te halen om met js te kunnen manipuleren -->
   <div bind:this={scrollArea} class="scroll-area">
+    <!-- style toegevoegd die veranderd op scroll -->
+    <!-- class toegevoegd zodat de h1 het element is waarop de toggle wordt uitgevoerd -->
     <h1 style={textStyle} class:ridiculous={isRidiculous}>
       Platform grote thema's
     </h1>
@@ -49,6 +71,7 @@
     <li><a href="/" style={textStyle}>Werkvormen</a></li>
     <li><a href="/" style={textStyle}>Uploaden</a></li>
     <li><a href="/" style={textStyle}>Inloggen</a></li>
+    <!-- de on:click is de trigger voor de functie en triggert daarmee de toggle -->
     <button on:click={toggleRidiculous}>Make it more ridiculous</button>
   </ul>
 </header>
@@ -179,19 +202,17 @@
   @keyframes shakeButton {
     0%,
     100% {
-      transform: translateY(0); /* Initial and final position: no translation */
+      transform: translateY(0); /* begin en eindputn is 0 */
     }
     25%,
     75% {
-      transform: translateY(-2px); /* Move the button to the left */
+      transform: translateY(-2px);
     }
     50% {
-      transform: translateY(5px); /* Move the button to the right */
+      transform: translateY(5px);
     }
   }
   .ridiculous {
-    /* Your rainbow animation or color styles go here */
-    /* For example, use keyframes for rainbow animation */
     animation: rainbowAnimation 2s infinite linear;
     font-family: "Rubik Bubbles", sans-serif;
   }
@@ -220,41 +241,22 @@
     }
   }
 
-  @keyframes smallHeader {
-    20% {
-      scale: 0.9;
-    }
-    50% {
-      scale: 0.8;
-    }
-    100% {
-      position: sticky;
-    }
-  }
-
   /* scroll bar */
   .scroll-area::-webkit-scrollbar {
     width: 20px;
   }
 
+  /* voor de "baan" van de scrollbar */
+
   .scroll-area::-webkit-scrollbar-track {
     background-color: transparent;
   }
 
+  /* voor de knop binnen de scrollbar */
   .scroll-area::-webkit-scrollbar-thumb {
     background-image: url("arrow v-2.png");
     background-position: center top;
     background-repeat: no-repeat, no-repeat;
     background-size: 50px;
-    transform: rotate(0);
-  }
-
-  @media (min-width: 30rem) {
-  }
-
-  @media (min-width: 48rem) {
-  }
-
-  @media (min-width: 64rem) {
   }
 </style>
