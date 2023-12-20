@@ -14,23 +14,32 @@ body {
     color: var(--font-color);
     margin: 0;
     box-sizing: border-box;
+    overflow-x: hidden;
 }
 
 .frame-1{
     display: grid;
 grid-template-columns: repeat(5, 1fr);
 grid-template-rows: repeat(4, 1fr);
-grid-column-gap: 0px;
-grid-row-gap: 0px;
+
 height: 100vh;
+align-items: baseline;
 }
 
 nav{
-    grid-area: 4 / 3 / 5 / 4;
+   grid-area: 3/ 1/ 4/ 5;
+   margin-left: auto;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   margin-right: 2rem;
+   
 }
 nav > h2{
     color: #000;
+    
 }
+
 
 button > img{
     height: 3rem;
@@ -40,7 +49,11 @@ button > img{
 button{
     border: 0;
     border-radius: 10px;
+    
+    
+    
     background-color: #D1963D;
+    
 }
 
 .cloud-left, .cloud-right{
@@ -92,7 +105,6 @@ button{
     margin: 0 2px;
     border-radius: 50%;
     animation: raining 5s linear infinite ;
-
     transform-origin: bottom;
 }
 
@@ -118,9 +130,11 @@ button{
 
 /* tree */
 
-.tree{
+/* .tree{
     grid-area: 3 / 2 / 5 / 5;
-}
+    position: relative;
+    bottom: 0;
+} */
 /* ladder */
 .ladder-hole {
     width: 20rem;
@@ -130,7 +144,9 @@ button{
     background-color: #000000;
     border-radius: 50%;
     z-index: 0;
-    grid-area: 4 / 3 / 5 / 4;
+    display: flex;
+    align-self: center;
+    grid-area: 4 / 1 / 5 / 5;
 }
 
 .ladder {
@@ -167,7 +183,9 @@ button{
 
 /* human */
 .human{
-    grid-area: 3 / 4 / 5 / 5;
+    bottom: 5rem;
+    position: relative;
+    grid-area: 4 / 3 / 4 / 6;
 }
 /* Head */
 .head {
@@ -239,8 +257,28 @@ button{
 /* grass */
 .grass{
     width: 100vw;
-    height: 10vh;
+    height: 20vh;
     background-color: green;
-    grid-area: 4 / 1 / 5 / 6;
+    grid-area: 4/1/5/5;
+   
     
 }
+
+.human.jump-down {
+    animation: jump-down 5s ease-in-out forwards;
+  }
+  
+  @keyframes jump-down {
+    0% {
+      transform: translateY(-5px);
+    }
+    10%{
+        transform: translateY(5rem);
+    }
+    50%{
+        transform: translateX(5rem);
+    }
+    100% {
+      transform: translateY(150px); /* Adjust the value based on how far you want to move */
+    }
+  }
