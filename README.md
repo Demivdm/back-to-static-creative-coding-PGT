@@ -2,6 +2,20 @@
 
 Dit project is gemaakt met behulp van het Svelte-framework en omvat creatieve spikes die zijn geïmplementeerd op afzonderlijke branches binnen de repository. Elke week is toegewezen aan een specifieke creative spike.
 
+**Creative spike 1**
+
+![image](https://github.com/Demivdm/back-to-static-creative-coding-PGT/assets/112861166/04315785-c848-4f18-bf54-433832134cf4)
+
+**Creative spike 2**
+
+![image](https://github.com/Demivdm/back-to-static-creative-coding-PGT/assets/112861166/aaee530f-1a04-4f87-8d5e-a73362fc1340)
+
+
+**Creative spike 3**
+
+![image](https://github.com/Demivdm/back-to-static-creative-coding-PGT/assets/112861166/aaef60aa-98b3-4fbb-84b2-1ae124e69bd9)
+
+
 ## Inhoudsopgave
 
   * [Beschrijving](#beschrijving)
