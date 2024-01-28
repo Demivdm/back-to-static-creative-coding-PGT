@@ -1,8 +1,6 @@
-# Back to static creative spikes
+# Back to static creative spikes (Platform Grote Thema's) README
 
 Dit project is gemaakt met behulp van het Svelte-framework en omvat creatieve spikes die zijn geïmplementeerd op afzonderlijke branches binnen de repository. Elke week is toegewezen aan een specifieke creative spike.
-
-# Platform Grote Thema's README
 
 ## Inhoudsopgave
 
